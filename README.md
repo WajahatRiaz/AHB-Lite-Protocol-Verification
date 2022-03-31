@@ -1,4 +1,4 @@
-# AHB-Lite Protocol
+# **AHB-Lite Protocol**
 
 ##Introduction:
 Advance High Performance-Lite (AHB-lite) is a bus interface that supports a single bus master
@@ -24,7 +24,7 @@ Every transfer consists of two phases:
 
 A slave cannot request that the address phase is extended and therefore all slaves must be capable of sampling the address during this time. However, a slave can request that the master extends the data phase by using a HREADY signal. This signal, when LOW, causes wait states to be inserted into the transfer and enables the slave to have extra time to provide or sample data. The slave uses a response signal to indicate the success or failure of a transfer. The signals of interest are given below along with their descriptions:
 
-### Global Signals:
+## Global Signals:
 
 | Name          | Destination             | Description                                                                                                                                                   |
 |---------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -32,7 +32,7 @@ A slave cannot request that the address phase is extended and therefore all slav
 |     HRESTn    |     Reset Controller    |     Asynchronous primary reset for all bus elements                                                                                                           |
 
 
-### Master Signals: 
+## Master Signals: 
 
 | Name                | Destination               | Description                                                                             |
 |---------------------|---------------------------|-----------------------------------------------------------------------------------------|
@@ -41,7 +41,7 @@ A slave cannot request that the address phase is extended and therefore all slav
 |     HSIZE [2:0]     |     Slave                 |     Indicates the size of transfer from 8 bits to 1024   bits                           |
 
 
-### Slave Signals: 
+## Slave Signals: 
 
 | Name                 | Destination         | Description                                                                                       | 
 |----------------------|---------------------|---------------------------------------------------------------------------------------------------|
@@ -50,13 +50,13 @@ A slave cannot request that the address phase is extended and therefore all slav
 |     HRESP            |     Multiplexor     |     Provides additional information that the transfer   was successful or failed                  |
 
 
-### Decoder Signals: 
+## Decoder Signals: 
 
 | Name                                                              | Destination  | Description                                                            | 
 |-------------------------------------------------------------------|--------------|------------------------------------------------------------------------|
 |     HSELx                                                         |     Slave    |     Indicates current transfer is for intended for   selected slave    |
 
-### Multiplexor Signals:
+## Multiplexor Signals:
 
 | Name                 | Destination             | Description                                      | 
 |----------------------|-------------------------|--------------------------------------------------|
