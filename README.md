@@ -58,8 +58,6 @@ A slave cannot request that the address phase is extended and therefore all slav
 | Name                                                              | Destination  | Description                                                            | 
 |-------------------------------------------------------------------|--------------|------------------------------------------------------------------------|
 |     HSELx                                                         |     Slave    |     Indicates current transfer is for intended for   selected slave    |
-|                                                                   |              |                                                                        |
-|                                                                   |              |                                                                        |
 
 ## Multiplexor Signals:
 
