@@ -17,7 +17,7 @@ An AHB-Lite master provides address and control information to initiate read and
 
 
 
-##Working Protocol:
+## Working Protocol:
 The master starts a transfer by driving the address and control signals. These signals
 provide information about the address, direction, width of the transfer, and indicate if
 the transfer forms part of a burst. Transfers can be of different types for instance single, incrementing bursts that do not wrap at address boundaries, wrapping bursts that wrap at particular address boundaries, etc. The write data bus moves data from the master to a slave, and the read data bus moves data from a slave to the master.
