@@ -14,9 +14,6 @@ The main components of the AHB-Lite system are as follows:
 
 An AHB-Lite master provides address and control information to initiate read and write operations. The slave responds to transfers initiated by masters in the system. The slave uses the select signal from the decoder to control when it responds to a bus transfer. The slave signals back to the master i.e., the success, failure, or waiting of the data transfer. This component decodes the address of each transfer and provides a select signal for the slave that is involved in the transfer. It also provides a control signal to the multiplexor. A slave-to-master multiplexor is required to multiplex the read data bus and response signals from the slaves to the master.
 
-
-
-
 ## Working Protocol:
 The master starts a transfer by driving the address and control signals. These signals
 provide information about the address, direction, width of the transfer, and indicate if
@@ -25,9 +22,9 @@ Every transfer consists of two phases:
 1) Address phase: one address and control cycle
 2) Data phase: one or more cycles for the data.
 
-A slave cannot request that the address phase is extended and therefore all slaves must be capable of sampling the address during this time. However, a slave can request that the master extends the data phase by using a HREADY signal. This signal, when LOW, causes wait states to be inserted into the transfer and enables the slave to have extra time to provide or sample data. The slave uses a response signal to indicate the success or failure of a transfer.
+A slave cannot request that the address phase is extended and therefore all slaves must be capable of sampling the address during this time. However, a slave can request that the master extends the data phase by using a HREADY signal. This signal, when LOW, causes wait states to be inserted into the transfer and enables the slave to have extra time to provide or sample data. The slave uses a response signal to indicate the success or failure of a transfer. The signals of interest are given below along with their descriptions:
 
-## Global Signals:
+### Global Signals:
 
 | Name          | Destination             | Description                                                                                                                                                   |
 |---------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -35,7 +32,7 @@ A slave cannot request that the address phase is extended and therefore all slav
 |     HRESTn    |     Reset Controller    |     Asynchronous primary reset for all bus elements                                                                                                           |
 
 
-## Master Signals: 
+### Master Signals: 
 
 | Name                | Destination               | Description                                                                             |
 |---------------------|---------------------------|-----------------------------------------------------------------------------------------|
@@ -44,7 +41,7 @@ A slave cannot request that the address phase is extended and therefore all slav
 |     HSIZE [2:0]     |     Slave                 |     Indicates the size of transfer from 8 bits to 1024   bits                           |
 
 
-## Slave Signals: 
+### Slave Signals: 
 
 | Name                 | Destination         | Description                                                                                       | 
 |----------------------|---------------------|---------------------------------------------------------------------------------------------------|
@@ -53,13 +50,13 @@ A slave cannot request that the address phase is extended and therefore all slav
 |     HRESP            |     Multiplexor     |     Provides additional information that the transfer   was successful or failed                  |
 
 
-## Decoder Signals: 
+### Decoder Signals: 
 
 | Name                                                              | Destination  | Description                                                            | 
 |-------------------------------------------------------------------|--------------|------------------------------------------------------------------------|
 |     HSELx                                                         |     Slave    |     Indicates current transfer is for intended for   selected slave    |
 
-## Multiplexor Signals:
+### Multiplexor Signals:
 
 | Name                 | Destination             | Description                                      | 
 |----------------------|-------------------------|--------------------------------------------------|
