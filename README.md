@@ -29,11 +29,11 @@ A slave cannot request that the address phase is extended and therefore all slav
 
 ## Global Signals:
 
-| Name          | Destination             | Description                                                                                                                                          |   |   |
-|---------------|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|---|---|
-| HCLK          | Clock source            | Clock source for all operations on the protocol. Input signals are sampled at rising edge and changes in output signals happen after the rising edge |
-|     HRESTn    |     Reset Controller    |     Asynchronous primary reset for all bus elements                                                                                                  |   
-|               |                         |                                                                                                                                                      |   |   |
+| Name          | Destination             | Description                                                                                                                                                   |
+|---------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|     HCLK      |     Clock source        |     Clock source for all operations on the protocol. Input signals are sampled at rising edge and changes in output signals happen   after the rising edge    |
+|     HRESTn    |     Reset Controller    |     Asynchronous primary reset for all bus elements                                                                                                           |
+|               |                         |                                                                                                                                                               |
 
 ## Master Signals: 
 
