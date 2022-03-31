@@ -25,4 +25,12 @@ Every transfer consists of two phases:
 1) Address phase: one address and control cycle
 2) Data phase: one or more cycles for the data.
 
-A slave cannot request that the address phase is extended and therefore all slaves must be capable of sampling the address during this time. However, a slave can request that the master extends the data phase by using a HREADY signal. This signal, when LOW, causes wait states to be inserted into the transfer and enables the slave to have extra time to provide or sample data. The slave uses a response signal to indicate the success or failure of a transfer
+A slave cannot request that the address phase is extended and therefore all slaves must be capable of sampling the address during this time. However, a slave can request that the master extends the data phase by using a HREADY signal. This signal, when LOW, causes wait states to be inserted into the transfer and enables the slave to have extra time to provide or sample data. The slave uses a response signal to indicate the success or failure of a transfer.
+
+## Global Signals:
+
+| Name          | Destination             | Description                                                                                                                                          |   |   |
+|---------------|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|---|---|
+| HCLK          | Clock source            | Clock source for all operations on the protocol. Input signals are sampled at rising edge and changes in output signals happen after the rising edge |   |   |
+|     HRESTn    |     Reset Controller    |     Asynchronous primary reset for all bus elements                                                                                                  |   |   |
+|               |                         |                                                                                                                                                      |   |   |
