@@ -34,3 +34,37 @@ A slave cannot request that the address phase is extended and therefore all slav
 | HCLK          | Clock source            | Clock source for all operations on the protocol. Input signals are sampled at rising edge and changes in output signals happen after the rising edge |   |   |
 |     HRESTn    |     Reset Controller    |     Asynchronous primary reset for all bus elements                                                                                                  |   |   |
 |               |                         |                                                                                                                                                      |   |   |
+
+## Master Signals: 
+
+| Name                | Destination               | Description                                                                             |   |   |
+|---------------------|---------------------------|-----------------------------------------------------------------------------------------|---|---|
+|     HADDR [31:0]    |     Slave and Decoder     |     Address bus of 32 bits                                                              |   |   |
+|     HBURST [2:0]    |     Slave                 |     Indicates the type of burst signal including   wrapping and incrementing bursts     |   |   |
+|     HSIZE [2:0]     |     Slave                 |     Indicates the size of transfer from 8 bits to 1024   bits                           |   |   |
+
+
+## Slave Signals: 
+
+| Name                 | Destination         | Description                                                                                       |   |   |
+|----------------------|---------------------|---------------------------------------------------------------------------------------------------|---|---|
+|     HRDATA [31:0]    |     Multiplexor     |     Read data bus to transfer the data from a Slave’s   location to the Master via multiplexor    |   |   |
+|     HREADYOUT        |     Multiplexor     |     Indicates transfer has finished on the bus and is   used to extend the data phase             |   |   |
+|     HRESP            |     Multiplexor     |     Provides additional information that the transfer   was successful or failed                  |   |   |
+
+
+## Decoder Signals: 
+
+| Name                                                              | Destination  | Description                                                            |   |   |
+|-------------------------------------------------------------------|--------------|------------------------------------------------------------------------|---|---|
+|     HSELx    Note: x is a unique identifier for AHB lite slave    |     Slave    |     Indicates current transfer is for intended for   selected slave    |   |   |
+|                                                                   |              |                                                                        |   |   |
+|                                                                   |              |                                                                        |   |   |
+
+## Multiplexor Signals:
+
+| Name                 | Destination             | Description                                      |   |   |
+|----------------------|-------------------------|--------------------------------------------------|---|---|
+|     HRDATA [31:0]    |     Master              |     Read data bus to rout to Master              |   |   |
+|     HREADY           |     Master and Slave    |     Indicates completion of previous transfer    |   |   |
+|     HRESP            |     Master              |     Transfer response                            |   |   |
