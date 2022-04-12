@@ -1,4 +1,4 @@
-interface intf();
+interface intf(input logic HCLK, HRESTn);
 	
 	
 	logic   [31:0] HWDATA; 
