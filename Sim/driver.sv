@@ -31,4 +31,13 @@ class driver;
 		end	
 	endtask
 
+
+	task get_SINGLE_BURST(integer beats);
+		for (int i=0;i<beats;i++) begin
+		tr=new;
+		m1.get(tr);
+		$display("Address:0x%0h recieved",tr.HADDR);
+		end	
+	endtask
+
 endclass: driver
