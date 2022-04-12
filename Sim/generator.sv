@@ -111,7 +111,7 @@ class generator;
 		endtask
 
 
-task SINGLE_BURST(bit wr_data, integer beats);
+	task SINGLE_BURST(bit wr_data, integer beats);
 		bit [2:0] add_size;
 		tr=new; 
 		this.tr.HADDR=addr;
