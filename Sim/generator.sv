@@ -111,4 +111,37 @@ class generator;
 		endtask
 
 
+task SINGLE_BURST(bit wr_data, integer beats);
+		bit [2:0] add_size;
+		tr=new; 
+		this.tr.HADDR=addr;
+		this.tr.HWDATA=data;
+		this.tr.HBURST = 3'b000; //Single Burst
+       	 	this.tr.HWRITE = wr_data; 
+     		this.tr.HTRANS = 3'b010; // Non-Sequential 
+		m1.put(tr);
+		$display("Address:0x%0h sent to driver\n",tr.HADDR);
+	 	beats=beats-1; //because remainign are sequential
+		repeat(beats)	
+      			begin
+			tr=new;
+       			this.tr.HWRITE = wr_data; 
+       			this.tr.HBURST = 3'b000; //Single Burst
+      			this.tr.HTRANS = 3'b011; // SEQ for the remaining beats
+      			this.tr.HSIZE = 3'b010; // HSIZE=word (32-bits)
+      			case(tr.HSIZE)
+				3'b000 : add_size = 1;
+              			3'b001 : add_size = 2;
+          			3'b010 : add_size = 4;
+        		endcase 
+       			m1.put(tr);	
+			addr=addr+add_size;
+			this.tr.HADDR = addr;
+			$display("Address:0x%0h sent to mailbox",tr.HADDR);
+			end
+	
+		$display("All beats in Single Burst sent to driver\n");
+	endtask
+
+
 endclass: generator
