@@ -1,4 +1,4 @@
-[![Created Badge](https://badges.pufler.dev/created/puf17640/git-badges)](https://badges.pufler.dev)
+
 
 # **AHB-Lite Protocol**
 
@@ -63,5 +63,4 @@ A slave cannot request that the address phase is extended and therefore all slav
 
 
 
-![GitHub Contributors Image](https://contrib.rocks/image?repo=WajahatRiaz/AHB-Lite-Protocol-Verification)
-![Profile View Counter](https://komarev.com/ghpvc/?username=WajahatRiaz)
+
