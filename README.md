@@ -1,4 +1,4 @@
-
+[![GitLab last commit](https://badgen.net/gitlab/last-commit/NickBusey/HomelabOS/)](https://gitlab.com/NickBusey/HomelabOS/-/commits)
 
 # **AHB-Lite Protocol**
 
