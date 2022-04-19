@@ -1,4 +1,4 @@
-![Your Repository's Stats](https://github-readme-stats.vercel.app/api/top-langs/?username=WajahatRiaz&theme=blue-green)
+
 
 # **AHB-Lite Protocol**
 
@@ -60,3 +60,7 @@ A slave cannot request that the address phase is extended and therefore all slav
 |     HRDATA [31:0]    |     Master              |     Read data bus to rout to Master              |
 |     HREADY           |     Master and Slave    |     Indicates completion of previous transfer    |
 |     HRESP            |     Master              |     Transfer response                            |
+
+
+
+![GitHub Contributors Image](https://contrib.rocks/image?repo=WajahatRiaz/AHB-Lite-Protocol-Verification)
