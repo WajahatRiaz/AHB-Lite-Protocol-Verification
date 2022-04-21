@@ -16,8 +16,8 @@ class generator;
 	
 	task automatic INCR4(bit readwrite);
 		bit check;
-		bit [2:0] index;
-		bit [2:0] size;
+		bit [2:0] index; //increment in addresses
+		bit [2:0] size; //HSIZE
 		tr=new; 
 		
 		this.tr.HWRITE.rand_mode(0);
@@ -30,18 +30,11 @@ class generator;
 		this.tr.HTRANS= 2'b10; //NONSEQ
      		
 		check=tr.randomize();	
-
-		case(tr.HSIZE)
-				3'b000 : index = 1;
-              			3'b001 : index = 2;
-          			3'b010 : index = 4;
-        		endcase 
-	       	 		
+		
 		m1.put(tr);
 		$display("Address:0x%0h sent to mailbox",tr.HADDR);
 		size=this.tr.HSIZE;
 		addr=this.tr.HADDR;
-		addr+=index;
 		
 
 		repeat(3)	
@@ -60,19 +53,27 @@ class generator;
 			this.tr.HSIZE = size; 
 
 			check=tr.randomize();
-      			addr=addr+index;
+	
+			case(tr.HSIZE)
+				3'b000 : index = 1;
+              			3'b001 : index = 2;
+          			3'b010 : index = 4;
+        		endcase 
+
+			m1.put(tr);	
+			addr=addr+index;
 			this.tr.HADDR = addr;
-			m1.put(tr);
-			$display("Address:0x%0h sent to mailbox",tr.HADDR);
+			$display("Address:0x%0h HSIZE:%0d sent to mailbox",tr.HADDR, tr.HSIZE);
 			end
 	
 		$display("All 4-beats in INCR4 burst sent to driver\n");
 		endtask
 
-	task automatic INCR8(bit  readwrite);		
+	
+	task automatic INCR8(bit readwrite);
 		bit check;
-		bit [2:0] index;
-		bit [2:0] size;
+		bit [2:0] index; //increment in addresses
+		bit [2:0] size; //HSIZE
 		tr=new; 
 		
 		this.tr.HWRITE.rand_mode(0);
@@ -85,18 +86,11 @@ class generator;
 		this.tr.HTRANS= 2'b10; //NONSEQ
      		
 		check=tr.randomize();	
-
-		case(tr.HSIZE)
-				3'b000 : index = 1;
-              			3'b001 : index = 2;
-          			3'b010 : index = 4;
-        		endcase 
-	       	 		
+		
 		m1.put(tr);
 		$display("Address:0x%0h sent to mailbox",tr.HADDR);
 		size=this.tr.HSIZE;
 		addr=this.tr.HADDR;
-		addr+=index;
 		
 
 		repeat(7)	
@@ -113,23 +107,29 @@ class generator;
       			
 			this.tr.HSIZE.rand_mode(0);
 			this.tr.HSIZE = size; 
-
+			
 			check=tr.randomize();
-      			addr=addr+index;
+
+			case(tr.HSIZE)
+				3'b000 : index = 1;
+              			3'b001 : index = 2;
+          			3'b010 : index = 4;
+        		endcase 
+
+			m1.put(tr);	
+			addr=addr+index;
 			this.tr.HADDR = addr;
-			m1.put(tr);
-			$display("Address:0x%0h sent to mailbox",tr.HADDR);
+			$display("Address:0x%0h HSIZE:%0d sent to mailbox",tr.HADDR, tr.HSIZE);
 			end
 	
-	
-		$display("All 8-beats in INCR8 burst sent to driver\n");
+		$display("All 8-beats in INCR4 burst sent to driver\n");
 		endtask
 
 	task automatic INCR16(bit  readwrite);		
 		bit check;
-		bit [2:0] index;
-		bit [2:0] size;
-		tr=new; 
+		bit [2:0] index; //increment in addresses
+		bit [2:0] size; //HSIZE
+		tr=new;  
 		
 		this.tr.HWRITE.rand_mode(0);
 		this.tr.HWRITE = readwrite; 
@@ -141,19 +141,11 @@ class generator;
 		this.tr.HTRANS= 2'b10; //NONSEQ
      		
 		check=tr.randomize();	
-
-		case(tr.HSIZE)
-				3'b000 : index = 1;
-              			3'b001 : index = 2;
-          			3'b010 : index = 4;
-        		endcase 
-	       	 		
+		
 		m1.put(tr);
 		$display("Address:0x%0h sent to mailbox",tr.HADDR);
 		size=this.tr.HSIZE;
 		addr=this.tr.HADDR;
-		addr+=index;
-		
 
 		repeat(15)	
       			begin
@@ -169,14 +161,20 @@ class generator;
       			
 			this.tr.HSIZE.rand_mode(0);
 			this.tr.HSIZE = size; 
-
+			
 			check=tr.randomize();
-      			addr=addr+index;
+
+			case(tr.HSIZE)
+				3'b000 : index = 1;
+              			3'b001 : index = 2;
+          			3'b010 : index = 4;
+        		endcase 
+
+			m1.put(tr);	
+			addr=addr+index;
 			this.tr.HADDR = addr;
-			m1.put(tr);
-			$display("Address:0x%0h sent to mailbox",tr.HADDR);
+			$display("Address:0x%0h HSIZE:%0d sent to mailbox",tr.HADDR, tr.HSIZE);
 			end
-	
 	
 		$display("All 16-beats in INCR16 burst sent to driver\n");
 		endtask
