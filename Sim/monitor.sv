@@ -1,11 +1,14 @@
-
+/*`ifndef include_n
+`include"transaction.sv"
+`endif*/
 class monitor;
 	transaction tr;
 	mailbox #(transaction) m2;
-	virtual intf.mon_port vif;
+	virtual interface intf.monitor_port vif;
 
 	//mailbox and virtual interface construct
-	function new(mailbox #(transaction) m2,virtual intf vif);
+	function new(mailbox #(transaction) m2,virtual interface intf.monitor_port vif);
+	$display("Entering in monitor");
 		this.m2=m2;
 		this.vif=vif;
 	endfunction
