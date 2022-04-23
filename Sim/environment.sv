@@ -1,43 +1,44 @@
+
 `include "interface.sv"
 `include "transaction.sv"
 `include "generator.sv"
 `include "driver.sv"
 `include "monitor.sv"
+`include  "scoreboard.sv"
 
 class environment;
-
-
-    mailbox #(transaction) mbx1,mbx2;
-    intf f1(clock,HRESTn);
-    virtual intf vif;
-    generator gen;
-    driver dr;
-    monitor mon;
-    scoreboard scb;
-    bit read=0;
-    bit write=1;
-
-
-    mbx1=new(); //generator - driver mailbox
-    mbx2=new(); //monitor - scoreboard mailbox
- 
-    gen=new(mbx1);
-    
-
-    dr=new(mbx1,vif);
-    mon=new(mbx2,vif);
-    scb=new(mbx2);
-
-  task run ();
-    fork
-       gen.WRAP4(read);
-       gen.INCR8(write);
-       gen.INCR16(read);
-       dr.run();
-    join
-    
-    end
   
+
+	generator  gen;
+	driver  drv;
+	monitor    mon;
+	scoreboard scb;
+  
+mailbox#(transaction) gen2drv;
+mailbox#(transaction) mon2scb;
+
+	virtual interface intf vif;
+
+	function new(virtual interface intf vif);
+
+		this.vif = vif;
+      		gen2drv=new(0);
+      		gen=new(gen2drv);
+      		drv=new(gen2drv,vif);
+      		mon=new(mon2scb,vif);
+		scb=new(mon2scb);
+	endfunction
+
+
+	task run();
+ 		 fork 
+     		 	gen.INCR4(1);
+     		 	drv.run(); 
+			mon.run();
+			scb.run();
+  		join 
+   
+endtask
+
+
 endclass: environment
-
-
