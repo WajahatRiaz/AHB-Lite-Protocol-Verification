@@ -29,23 +29,11 @@ clocking driver_cb @(posedge HCLK);
 endclocking 
 
  modport monitor_port(
-	input 		HCLK,
-      	input  		HRESETn,
-      	input   	HSEL,
-  	input    	HADDR,
- 	input    	HWDATA,
-  	input           HWRITE,
-  	input        	HSIZE,
-  	input        	HBURST,
-  	input        	HPROT,
-  	input        	HTRANS,
-  	input           HREADY,
-	output 		HREADYOUT,
-	output          HRESP,
-	output 		HRDATA
+	input 		HCLK,HRESETn,HSEL,HADDR,HWDATA, HWRITE,HSIZE,HBURST,HPROT,HTRANS, HREADY,
+	input 		HREADYOUT,HRESP, HRDATA
   );
 
-modport dut(
+ modport dut_port(
       	input  		HRESETn,
       	input  		HCLK,
       	input   	HSEL,

@@ -1,6 +1,6 @@
-/*`ifndef include_n
-`include "transaction.sv"
-`endif*/
+//`ifndef include_n
+//`include "transaction.sv"
+//`endif
 class generator;
 	
 	bit [31:0]addr;
@@ -495,9 +495,9 @@ $display("Entering Generator block");
 	 	
 		bit check;
 		tr=new;
-		check=tr.randomize();	
-	repeat(count)begin 
-		case(tr.HBURST)
+		check=tr.randomize();
+		repeat(count)begin 
+		case(tr.HBURST) 
 				0: SINGLE_BURST(readwrite);
   				1:  INCR(readwrite,10);
  				2:  WRAP4(readwrite);
@@ -508,6 +508,5 @@ $display("Entering Generator block");
   				7:  INCR16(readwrite);
 		endcase
 	end
-		
 	endtask
 endclass: generator
